@@ -1,0 +1,19 @@
+/******************************************************************************/
+//                                E E P R O M . H                             //
+//                                    D P X                                   //
+/******************************************************************************/
+
+#ifndef FIRMWARE_EEPROM_H
+#define FIRMWARE_EEPROM_H
+
+#define EEPROM_ADDRESS_OFFSET 0x7FFDA0
+
+void EEPROM_writeInt(unsigned int address, unsigned int value);
+
+unsigned int EEPROM_readInt(unsigned int address);
+
+void EEPROM_writeArray(unsigned int address, unsigned int *values);
+
+void EEPROM_readArray(unsigned int address, unsigned int *values);
+
+#endif //FIRMWARE_EEPROM_H
