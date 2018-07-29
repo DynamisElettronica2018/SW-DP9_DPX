@@ -24,14 +24,14 @@ _dHardReset_reset:
 ;d_hardReset.c,30 :: 		dHardReset_setFlag();
 	PUSH	W10
 	CALL	_dHardReset_setFlag
-;d_hardReset.c,31 :: 		dSignalLed_set(DSIGNAL_LED_RED_RIGHT);
+;d_hardReset.c,31 :: 		dSignalLed_set(DSIGNAL_LED_RED);
 	MOV.B	#1, W10
 	CALL	_dSignalLed_set
 ;d_hardReset.c,32 :: 		dSignalLed_set(DSIGNAL_LED_GREEN);
-	MOV.B	#3, W10
+	CLR	W10
 	CALL	_dSignalLed_set
 ;d_hardReset.c,33 :: 		dSignalLed_set(DSIGNAL_LED_BLUE);
-	CLR	W10
+	MOV.B	#2, W10
 	CALL	_dSignalLed_set
 ;d_hardReset.c,35 :: 		reset
 	RESET

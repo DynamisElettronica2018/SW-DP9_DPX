@@ -10,209 +10,6 @@ main
 			_Divide_32x32
 	dHardReset_hasBeenReset
 	d_UIController_init
-		dControls_init
-			I2C1_Init
-				Get_Fosc_kHz
-				Delay_100ms
-				I2C1_Wait_For_Idle
-					I2C1_Is_Idle
-				Delay_1us
-				_Multiply_32x32
-				_Divide_32x32
-			I2CExpander_init
-				I2C1_Start
-					I2C1_Is_Idle
-					I2C1_Is_Finished
-				I2C1_Write
-					I2C1_Is_Finished
-				I2C1_Stop
-					I2C1_Is_Finished
-			I2CExpander_readPort
-				I2C1_Start
-				I2C1_Write
-				I2C1_Restart
-					I2C1_Is_Finished
-				I2C1_Read
-					I2C1_Is_Finished
-				I2C1_Stop
-			log2
-			d_UI_setOperatingMode
-				dd_Dashboard_print
-					dd_GraphicController_isFrameUpdateForced
-					eGlcd_clear
-						eGlcd_fill
-							_frameBuffer_Fill
-					dd_Dashboard_printGearLetter
-						dGear_getCurrentGearLetter
-						dd_GraphicController_isFrameUpdateForced
-						xGlcd_Set_Font
-						eGlcd_overwriteChar
-							eGlcd_clearChar
-								xGlcd_Clear_Char
-									xGLCD_Write_Data
-										_frameBuffer_Read
-										_frameBuffer_Write
-									_Multiply_32x32
-							eGlcd_writeChar
-								xGlcd_Write_Char
-									xGLCD_Write_Data
-									_Multiply_32x32
-					dd_Dashboard_printIndicators
-						xGlcd_Set_Font
-						dd_Indicator_isRequestingUpdate
-						dd_GraphicController_isFrameUpdateForced
-						dd_Dashboard_printIndicator
-							dd_GraphicController_isFrameUpdateForced
-							dd_Indicator_drawContainers
-								eGlcd_drawRect
-									ceil
-										_Float2Longint
-										_Long2Float
-										_Compare_Le_Fp
-											_Compare_Fp
-										_AddSub_FP
-									_frameBuffer_Read
-									_frameBuffer_Write
-									_Long2Float
-									_Div_FP
-									_Float2Longint
-							dd_Indicator_getNameXCoord
-							dd_Indicator_getNameYCoord
-							xGlcd_Set_Font
-							eGlcd_writeText
-								xGlcd_Write_Text
-									strlen
-									xGlcd_Write_Char
-							dd_Indicator_getLabelXCoord
-							dd_Indicator_getLabelYCoord
-							eGlcd_clearText
-								xGlcd_Clear_Text
-									strlen
-									xGlcd_Clear_Char
-							dd_Indicator_isRequestingUpdate
-							dd_Indicator_parseValueLabel
-								sprintf
-									_doprntf
-										isdigit
-										scale
-											_Mul_FP
-										fround
-											_Mul_FP
-										_Divide_32x32
-										_Modulus_32x32
-										_Compare_Le_Fp
-										_Mul_FP
-										_Compare_Ge_Fp
-											_Compare_Fp
-										_Div_FP
-										_Float2Longword
-										_Long2Float
-										_Sub_FP
-											_AddSub_FP
-										_AddSub_FP
-										_Float2Longint
-								strcpy
-								strlen
-							dd_Indicator_clearPrintUpdateRequest
-				dd_Interface_printMenu
-					dd_printMenu
-						dd_Indicator_isRequestingUpdate
-						dd_MenuLine_hasToScroll
-							dd_Menu_isLineSelected
-							dd_MenuLine_getVisibleDescriptionWidth
-						dd_GraphicController_isFrameUpdateForced
-						dd_printMenuLine
-							dd_Menu_isLineSelected
-							eGlcd_fillPage
-								_frameBuffer_Write
-							dd_Menu_makeLineText
-								dd_Indicator_isRequestingUpdate
-								dd_Indicator_parseValueLabel
-								dd_Indicator_clearPrintUpdateRequest
-								dd_MenuLine_getScrollingOverflow
-									dd_MenuLine_hasToScroll
-								dd_MenuLine_getScrollOffset
-									dd_MenuLine_hasToScroll
-									dd_MenuLine_getScrollingOverflow
-									_Long2Float
-									_Mul_FP
-									_Float2Longint
-								dd_MenuLine_getVisibleDescriptionWidth
-								dd_MenuLine_hasToScroll
-							xGlcd_Set_Font
-							xGlcd_Write_Text
-				dd_Dashboard_init
-				dd_Menu_init
-					dd_Menu_reset
-				d_UI_BoardDebugModeInit
-					dd_GraphicController_setCollectionInterface
-						dd_GraphicController_setInterface
-							dd_GraphicController_getTmrCounterLimit
-								floor
-									_Float2Longint
-									_Long2Float
-									_Compare_Ge_Fp
-									_Sub_FP
-									_Compare_Le_Fp
-								_Long2Float
-								_Div_FP
-								_Mul_FP
-								_Float2Longint
-						strlen
-						strcpy
-						dd_Dashboard_print
-						dd_Interface_printMenu
-						dd_Dashboard_init
-						dd_Menu_init
-						d_UI_BoardDebugModeInit | Recursion.
-				d_UI_SettingsModeInit
-					d_DashboardSetting_updateValue
-						strcpy
-					dd_GraphicController_setCollectionInterface
-				d_UI_DebugModeInit
-					dd_GraphicController_setCollectionInterface
-				d_UI_CruiseModeInit
-					dd_GraphicController_setCollectionInterface
-					d_traction_control_setOldValue
-						d_traction_control_propagateValue
-							Can_writeInt
-								Can_resetWritePacket
-								Can_addIntToWritePacket
-									Can_addByteToWritePacket
-								Can_write
-									CAN1Write
-										CAN1IDToRegs
-									Can_getWriteFlags
-				d_UI_AccModeInit
-					dd_GraphicController_setCollectionInterface
-				d_UI_AutocrossModeInit
-					dd_GraphicController_setCollectionInterface
-					d_traction_control_setOldValue
-				d_UI_BoardDebugModeClose
-				d_UI_SettingsModeClose
-					d_UI_ApplySettings
-				d_UI_DebugModeClose
-				d_UI_CruiseModeClose
-				d_UI_AccModeClose
-					dAcc_stopAutoAccelerationFromSW
-						Can_writeInt
-						dAcc_stopAutoAcceleration
-							dd_GraphicController_unsetOnScreenNotification
-							d_UI_getOperatingMode
-							d_UI_AccModeInit
-				d_UI_AutocrossModeClose
-					dAutocross_stopAutocrossFromSW
-						Can_resetWritePacket
-						Can_addIntToWritePacket
-						dDCU_isAcquiring
-						Can_write
-						dAutocross_stopAutocross
-							dd_GraphicController_unsetOnScreenNotification
-							d_UI_getOperatingMode
-							d_UI_AutocrossModeInit
-			d_selectorPositionToMode
-			setExternalInterrupt
-				setInterruptPriority
 		Can_init
 			CAN1Initialize
 				CAN1SetOperationMode
@@ -241,12 +38,20 @@ main
 					_Div_FP
 					_Float2Longint
 			setInterruptPriority
+		Buttons_init
+			setExternalInterrupt
+				setInterruptPriority
 		dSignalLed_init
 			dSignalLed_set
 			dSignalLed_unset
 		dRpm_init
-			I2CExpander_init
-			dRpm_enableLedStripeOutput
+		dLedStripe_init
+			dLedStripe_clear
+				dLedStripe_setLedColorAtPosition
+					dLedStripe_setLedFromByteStripe
+		d_traction_control_init
+		dAcc_init
+			dHardReset_hasBeenReset
 		dAutocross_init
 			dHardReset_hasBeenReset
 		dd_GraphicController_init
@@ -255,10 +60,25 @@ main
 				_Lcd_Init
 					_Lcd_Toggle_Enable
 			eGlcd_clear
+				eGlcd_fill
+					_frameBuffer_Fill
 			xGlcd_Set_Font
 			dHardReset_hasBeenReset
 			dd_GraphicController_startupLogo
 				dd_GraphicController_getTmrCounterLimit
+					floor
+						_Float2Longint
+						_Long2Float
+						_Compare_Ge_Fp
+							_Compare_Fp
+						_Sub_FP
+							_AddSub_FP
+						_Compare_Le_Fp
+							_Compare_Fp
+					_Long2Float
+					_Div_FP
+					_Mul_FP
+					_Float2Longint
 				dd_printLogoAnimation
 					eGlcd_loadImage
 						_frameBuffer_LoadImage
@@ -280,6 +100,10 @@ main
 					round
 						floor
 						ceil
+							_Float2Longint
+							_Long2Float
+							_Compare_Le_Fp
+							_AddSub_FP
 						_Float2Longint
 						_Long2Float
 						_Sub_FP
@@ -330,12 +154,163 @@ main
 				setInterruptPriority
 				setTimer
 			dd_GraphicController_forceFullFrameUpdate
-		dAcc_init
-			dHardReset_hasBeenReset
-		d_traction_control_init
-		dEbb_init
 		setInterruptPriority
 		setTimer
+		d_UI_setOperatingMode
+			dd_Dashboard_print
+				dd_GraphicController_isFrameUpdateForced
+				eGlcd_clear
+				dd_Dashboard_printGearLetter
+					dGear_getCurrentGearLetter
+					dd_GraphicController_isFrameUpdateForced
+					xGlcd_Set_Font
+					eGlcd_overwriteChar
+						eGlcd_clearChar
+							xGlcd_Clear_Char
+								xGLCD_Write_Data
+									_frameBuffer_Read
+									_frameBuffer_Write
+								_Multiply_32x32
+						eGlcd_writeChar
+							xGlcd_Write_Char
+								xGLCD_Write_Data
+								_Multiply_32x32
+				dd_Dashboard_printIndicators
+					xGlcd_Set_Font
+					dd_Indicator_isRequestingUpdate
+					dd_GraphicController_isFrameUpdateForced
+					dd_Dashboard_printIndicator
+						dd_GraphicController_isFrameUpdateForced
+						dd_Indicator_drawContainers
+							eGlcd_drawRect
+								ceil
+								_frameBuffer_Read
+								_frameBuffer_Write
+								_Long2Float
+								_Div_FP
+								_Float2Longint
+						dd_Indicator_getNameXCoord
+						dd_Indicator_getNameYCoord
+						xGlcd_Set_Font
+						eGlcd_writeText
+							xGlcd_Write_Text
+								strlen
+								xGlcd_Write_Char
+						dd_Indicator_getLabelXCoord
+						dd_Indicator_getLabelYCoord
+						eGlcd_clearText
+							xGlcd_Clear_Text
+								strlen
+								xGlcd_Clear_Char
+						dd_Indicator_isRequestingUpdate
+						dd_Indicator_parseValueLabel
+							sprintf
+								_doprntf
+									isdigit
+									scale
+										_Mul_FP
+									fround
+										_Mul_FP
+									_Divide_32x32
+									_Modulus_32x32
+									_Compare_Le_Fp
+									_Mul_FP
+									_Compare_Ge_Fp
+									_Div_FP
+									_Float2Longword
+									_Long2Float
+									_Sub_FP
+									_AddSub_FP
+									_Float2Longint
+							strcpy
+							strlen
+						dd_Indicator_clearPrintUpdateRequest
+			dd_Interface_printMenu
+				dd_printMenu
+					dd_Indicator_isRequestingUpdate
+					dd_MenuLine_hasToScroll
+						dd_Menu_isLineSelected
+						dd_MenuLine_getVisibleDescriptionWidth
+					dd_GraphicController_isFrameUpdateForced
+					dd_printMenuLine
+						dd_Menu_isLineSelected
+						eGlcd_fillPage
+							_frameBuffer_Write
+						dd_Menu_makeLineText
+							dd_Indicator_isRequestingUpdate
+							dd_Indicator_parseValueLabel
+							dd_Indicator_clearPrintUpdateRequest
+							dd_MenuLine_getScrollingOverflow
+								dd_MenuLine_hasToScroll
+							dd_MenuLine_getScrollOffset
+								dd_MenuLine_hasToScroll
+								dd_MenuLine_getScrollingOverflow
+								_Long2Float
+								_Mul_FP
+								_Float2Longint
+							dd_MenuLine_getVisibleDescriptionWidth
+							dd_MenuLine_hasToScroll
+						xGlcd_Set_Font
+						xGlcd_Write_Text
+			dd_Dashboard_init
+			dd_Menu_init
+				dd_Menu_reset
+			d_UI_BoardDebugModeInit
+				dd_GraphicController_setCollectionInterface
+					dd_GraphicController_setInterface
+						dd_GraphicController_getTmrCounterLimit
+					strlen
+					strcpy
+					dd_Dashboard_print
+					dd_Interface_printMenu
+					dd_Dashboard_init
+					dd_Menu_init
+					d_UI_BoardDebugModeInit | Recursion.
+			d_UI_SettingsModeInit
+				d_DashboardSetting_updateValue
+					strcpy
+				dd_GraphicController_setCollectionInterface
+			d_UI_DebugModeInit
+				dd_GraphicController_setCollectionInterface
+			d_UI_CruiseModeInit
+				dd_GraphicController_setCollectionInterface
+				d_traction_control_setOldValue
+					d_traction_control_propagateValue
+						Can_writeInt
+							Can_resetWritePacket
+							Can_addIntToWritePacket
+								Can_addByteToWritePacket
+							Can_write
+								CAN1Write
+									CAN1IDToRegs
+								Can_getWriteFlags
+			d_UI_AccModeInit
+				dd_GraphicController_setCollectionInterface
+			d_UI_AutocrossModeInit
+				dd_GraphicController_setCollectionInterface
+				d_traction_control_setOldValue
+			d_UI_BoardDebugModeClose
+			d_UI_SettingsModeClose
+				d_UI_ApplySettings
+			d_UI_DebugModeClose
+			d_UI_CruiseModeClose
+			d_UI_AccModeClose
+				dAcc_stopAutoAccelerationFromSW
+					Can_writeInt
+					dAcc_stopAutoAcceleration
+						dd_GraphicController_unsetOnScreenNotification
+						d_UI_getOperatingMode
+						d_UI_AccModeInit
+			d_UI_AutocrossModeClose
+				dAutocross_stopAutocrossFromSW
+					Can_resetWritePacket
+					Can_addIntToWritePacket
+					dDCU_isAcquiring
+					Can_write
+					dAutocross_stopAutocross
+						dd_GraphicController_unsetOnScreenNotification
+						d_UI_getOperatingMode
+						d_UI_AutocrossModeInit
 	dHardReset_handleReset
 		dd_GraphicController_fireTimedNotification
 			dd_GraphicController_getTmrCounterLimit
@@ -359,60 +334,12 @@ main
 			Can_write
 	dHardReset_unsetFlag
 external4
-	d_controls_onNeutral
-		dGear_isNeutralSet
-		dGear_get
-		Can_writeInt
-	d_controls_onReset
-		dHardReset_reset
-			dHardReset_setFlag
-				EEPROM_writeInt
-					EEPROM_Write
-						EEPROM_Erase
-							EraseGlobal
-								KeySequence
-						KeySequence
-				dHardReset_getCounter
-					EEPROM_readInt
-						EEPROM_Read
-			dSignalLed_set
-	d_controls_onStartAcquisition
-		dDCU_switchAcquisition
-			dDCU_stopAcquisition
-				dd_GraphicController_fireTimedNotification
-				Can_resetWritePacket
-				Can_addIntToWritePacket
-				dAutocross_isActive
-				Can_write
-				dSignalLed_unset
-			dDCU_startAcquisition
-				dd_GraphicController_fireTimedNotification
-				Can_writeInt
-	d_controls_onAux2
-		dAcc_requestAction
-			dAcc_startAutoAcceleration
-				Can_writeInt
-			Can_writeInt
-		dAutocross_requestAction
-			dAutocross_startAutocross
-				Can_resetWritePacket
-				Can_addIntToWritePacket
-				dDCU_isAcquiring
-				Can_write
-			Can_resetWritePacket
-			Can_addIntToWritePacket
-			dDCU_isAcquiring
-			Can_write
-		dEbb_setPositionZero
-			Can_writeInt
-			dd_GraphicController_fireTimedNotification
-	clearExternalInterrupt
-external3
-	d_controls_onStart
+	button_onCDown
 		getExternalInterruptEdge
 		dSignalLed_set
 		dStart_switchOn
 		switchExternalInterruptEdge
+		dSignalLed_unset
 		dStart_switchOff
 	clearExternalInterrupt
 CAN_Interrupt
@@ -489,10 +416,6 @@ CAN_Interrupt
 		_Div_FP
 		_Mul_FP
 		_Float2Longint
-	dEfiSense_calculateSpeed
-		_Long2Float
-		_Mul_FP
-	dControls_disableCentralSelector
 	dEfiSense_calculateSlip
 		_Long2Float
 		_Mul_FP
@@ -554,23 +477,76 @@ CAN_Interrupt
 		dAcc_isTimeToGo
 		dd_GraphicController_fireTimedNotification
 		dAutocross_isTimeToGo
-	_Compare_Ge_Fp
 	_Long2Float
 external2
-	d_controls_onDRS
-		d_drs_propagateChange
-			Can_writeInt
+	button_onR1Down
+		d_UI_getOperatingMode
+		dd_Menu_selectUp
+			dd_Menu_scrollUp
+		dHardReset_reset
+			dHardReset_setFlag
+				EEPROM_writeInt
+					EEPROM_Write
+						EEPROM_Erase
+							EraseGlobal
+								KeySequence
+						KeySequence
+				dHardReset_getCounter
+					EEPROM_readInt
+						EEPROM_Read
+			dSignalLed_set
+	button_onR2Down
+		d_UI_getOperatingMode
+		dd_Menu_selectDown
+			dd_Menu_scrollDown
+		d_traction_control_increase
+			d_traction_control_propagateValue
+	button_onR3Down
+		d_UI_getOperatingMode
+		d_UI_setOperatingMode
 	clearExternalInterrupt
 timer4_interrupt
 	Buzzer_tick
 external1
-	I2CExpander_readPort
-	log2
-	d_controls_onSelectorSwitched
+	button_onL1Down
+		d_UI_getOperatingMode
+		dDCU_switchAcquisition
+			dDCU_stopAcquisition
+				dd_GraphicController_fireTimedNotification
+				Can_resetWritePacket
+				Can_addIntToWritePacket
+				dAutocross_isActive
+				Can_write
+				dSignalLed_unset
+			dDCU_startAcquisition
+				dd_GraphicController_fireTimedNotification
+				Can_writeInt
+		d_UI_onSettingsChange
+			dd_Menu_selectedLine
+			dd_GraphicController_invertColors
+				dd_GraphicController_queueColorInversion
+				eGlcd_invertColors
+				dd_GraphicController_forceNextFrameUpdate
+			dd_Indicator_switchBoolValueP
+				dd_Indicator_requestPrintUpdateP
+			dGear_isShiftingCheckBypassed
+			dGear_enableShiftCheck
+			dd_Indicator_setBoolValueP
+			dGear_disableShiftCheck
+			d_DashboardSetting_updateValue
+		d_traction_control_decrease
+			d_traction_control_propagateValue
+		dAcc_requestAction
+			dAcc_startAutoAcceleration
+				Can_writeInt
+			Can_writeInt
+	button_onL2Down
+		dGear_isNeutralSet
+		dGear_get
+		Can_writeInt
+	button_onL3Down
+		d_UI_getOperatingMode
 		d_UI_setOperatingMode
-		d_selectorPositionToMode
-	clearExternalInterrupt
-cn_interrupt
 	clearExternalInterrupt
 timer2_interrupt
 	dEfiSense_tick
@@ -602,41 +578,8 @@ timer2_interrupt
 		Can_writeByte
 	dRpm_canUpdateLedStripe
 	dRpm_updateLedStripe
-		ceil
-		I2CExpander_setPort
-			I2C1_Start
-			I2C1_Write
-			I2C1_Stop
-		_Long2Float
-		_Float2Longint
-	d_drs_isOpen
-	dSignalLed_set
-	dSignalLed_unset
-	d_controls_EncoderRead
-		d_controls_onLeftEncoder
-			d_UI_onSettingsChange
-				dd_Menu_selectedLine
-				dd_GraphicController_invertColors
-					dd_GraphicController_queueColorInversion
-					eGlcd_invertColors
-					dd_GraphicController_forceNextFrameUpdate
-				dd_Indicator_switchBoolValueP
-					dd_Indicator_requestPrintUpdateP
-				dGear_isShiftingCheckBypassed
-				dGear_enableShiftCheck
-				dd_Indicator_setBoolValueP
-				dGear_disableShiftCheck
-				d_DashboardSetting_updateValue
-			d_traction_control_move
-				d_traction_control_propagateValue
-		d_controls_onRightEncoder
-			dd_Menu_moveSelection
-				dd_Menu_scroll
-			dEbb_move
-				dEbb_propagateValue
-					Can_writeInt
-					dd_Indicator_setIntValueP
-				dd_Indicator_setStringValueP
+		dLedStripe_clear
+		dLedStripe_setLedColorAtPosition
 	d_sensors_sendSWTemp
 		d_SWTemp_getTempValue
 			ADC1_Read
@@ -707,12 +650,12 @@ timer1_interrupt
 		d_UI_AccModeClose
 		d_UI_AutocrossModeClose
 external0
-	d_controls_onGearUp
-		dGear_requestGearUp
-			dGear_canGearUp
-			Can_writeInt
-	d_controls_onGearDown
-		dGear_requestGearDown
-			dGear_canGearDown
-			Can_writeInt
+	button_onBRDown
+		dGear_canGearUp
+		dGear_isNeutralSet
+		Can_writeInt
+	button_onBLDown
+		dGear_canGearDown
+		dGear_isNeutralSet
+		Can_writeInt
 	clearExternalInterrupt

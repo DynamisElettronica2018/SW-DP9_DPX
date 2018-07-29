@@ -22,9 +22,10 @@
 #include "d_ui_controller.h"
 #include "d_acceleration.h"
 #include "d_autocross.h"
+#include "buttons.h"
 
-#define DD_BACKLIGHT_PIN RG13_bit
-#define DD_BACKLIGHT_PIN_DIRECTION TRISG13_bit
+#define DD_BACKLIGHT_PIN RB15_bit
+#define DD_BACKLIGHT_PIN_DIRECTION TRISB15_bit
 
 #define STARTUP_LOGO_PERIOD 1000 ///< Time interval logo is displayed on startup, in milliseconds.
 #define OP_MODE_POPUP_PERIOD 700  ///< Time interval popup with new op mode title is displayed on op mode change, in ms.
@@ -282,12 +283,10 @@ void dd_GraphicController_resetRefreshTimerValue(void){
         dd_refreshTimer = 0;
 }
 
-int __counter = 0;
-
 void dd_GraphicController_onTimerInterrupt(void){
      
     dd_refreshTimer++;
-   
+    
     if(dd_onStartup)
     {
         dd_tmr1Counter++;

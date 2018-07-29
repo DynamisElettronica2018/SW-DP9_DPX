@@ -73,37 +73,46 @@ void dd_Menu_setWidth(unsigned char width) {
     dd_Menu_Width = width;
 }
 
-void dd_Menu_scroll(signed char movements) {
-    char i;
-    dd_Menu_FirstLineIndex+=movements;
-    if ( dd_Menu_FirstLineIndex > dd_currentIndicatorsCount - dd_Menu_Height_param ) {
-        dd_Menu_FirstLineIndex = dd_currentIndicatorsCount - 1 - dd_Menu_Height_param;
-    }
-    else if (dd_Menu_FirstLineIndex < 0) {
-         dd_Menu_FirstLineIndex = 0;
-    }
-    for (i = dd_Menu_FirstLineIndex; i < dd_Menu_FirstLineIndex + dd_Menu_Height_param; i++) {
+void dd_Menu_scrollDown(void) {
+    unsigned char i;
+    if (dd_Menu_FirstLineIndex + dd_Menu_Height_param < dd_currentIndicatorsCount) {
+        dd_Menu_FirstLineIndex ++;
+        for (i = dd_Menu_FirstLineIndex; i < dd_Menu_FirstLineIndex + dd_Menu_Height_param; i++) {
             dd_currentIndicators[i]->pendingPrintUpdate = TRUE;
+        }
+    }
+}
+void dd_Menu_scrollUp(void) {
+    unsigned char i;
+    if (dd_Menu_FirstLineIndex > 0) {
+        dd_Menu_FirstLineIndex -= 1;
+        for (i = dd_Menu_FirstLineIndex; i < dd_Menu_FirstLineIndex + dd_Menu_Height_param; i++) {
+            dd_currentIndicators[i]->pendingPrintUpdate = TRUE;
+        }
     }
 }
 
-void dd_Menu_moveSelection(signed char movements) {
-    dd_currentIndicators[dd_Menu_SelectedLineIndex]->pendingPrintUpdate = TRUE;
-    dd_Menu_SelectedLineIndex+=movements;
-    if (dd_Menu_SelectedLineIndex >= dd_currentIndicatorsCount) {
-           dd_Menu_SelectedLineIndex = dd_currentIndicatorsCount - 1;
+void dd_Menu_selectDown(void) {
+    if (dd_Menu_SelectedLineIndex < dd_currentIndicatorsCount - 1) {
+       dd_currentIndicators[dd_Menu_SelectedLineIndex]->pendingPrintUpdate = TRUE;
+       dd_Menu_SelectedLineIndex++;
+       dd_currentIndicators[dd_Menu_SelectedLineIndex]->pendingPrintUpdate = TRUE;
+       dd_Menu_DescriptionScrollingTicks = 0;
     }
-    else if (dd_Menu_SelectedLineIndex < 0) {
-        dd_Menu_SelectedLineIndex = 0;
+    //if I reach past last visible element, scroll down
+    if (dd_Menu_SelectedLineIndex == dd_Menu_FirstLineIndex + dd_Menu_Height_param) {
+        dd_Menu_scrollDown();
     }
-    dd_currentIndicators[dd_Menu_SelectedLineIndex]->pendingPrintUpdate = TRUE;
-    if (dd_Menu_SelectedLineIndex >= dd_Menu_FirstLineIndex + dd_Menu_Height_param)
-    {
-        dd_Menu_scroll(dd_Menu_SelectedLineIndex - dd_Menu_FirstLineIndex - dd_Menu_Height_param + 1);
+}
+void dd_Menu_selectUp(void) {
+    if (dd_Menu_SelectedLineIndex > 0) {
+        dd_currentIndicators[dd_Menu_SelectedLineIndex]->pendingPrintUpdate = TRUE;
+        dd_Menu_SelectedLineIndex -= 1;
+        dd_currentIndicators[dd_Menu_SelectedLineIndex]->pendingPrintUpdate = TRUE;
+        dd_Menu_DescriptionScrollingTicks = 0;
     }
-    else if (dd_Menu_SelectedLineIndex < dd_Menu_FirstLineIndex)
-    {
-         dd_Menu_scroll(dd_Menu_SelectedLineIndex - dd_Menu_FirstLineIndex);
+    if (dd_Menu_SelectedLineIndex < dd_Menu_FirstLineIndex) {
+        dd_Menu_scrollUp();
     }
 }
 

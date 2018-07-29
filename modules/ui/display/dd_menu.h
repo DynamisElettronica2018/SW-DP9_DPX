@@ -32,23 +32,8 @@ void dd_Menu_setWidth(unsigned char width);
 */
 //!@{
 void dd_Menu_moveSelection(signed char movements);
-/*void dd_Menu_selectDown(void);
-void dd_Menu_selectUp(void);/*
-//!@}
 
-unsigned char dd_Menu_selectedLine();
-
-/** \file dd_menu.h
-        \brief Menu interface.
-
-The \link dd_menu.h menu\endlink interface displays all indicators as items of a vertical list, each on a separate row.
-At any time only a limited number of items will be visible on screen. Vertical scrolling allows navigation inside the
-list by moving the cursor, via \ref navigation_methods "navigating methods", and guarantees accessibility to all items. The cursor's position defines the selected item
-in the list. This qualifies the menu interface as being interactive.
-(If an item's text length exceeds row width it will be truncated. While selecting it with the cursor the text
-will scroll horizontally to reveal the whole original text.) Currently all items that exceed row width are scrolled,
-but it takes up a lot of processing power.\n
-
-*/
+void dd_Menu_selectDown(void);
+void dd_Menu_selectUp(void);
 
 #endif //DP8_DISPLAY_CONTROLLER_DD_MENU_H

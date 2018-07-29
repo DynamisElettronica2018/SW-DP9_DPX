@@ -101,7 +101,7 @@ _dDCU_stopAcquisition:
 	MOV	#0, W11
 	CALL	_Can_write
 ;d_dcu.c,52 :: 		dSignalLed_unset(DSIGNAL_LED_GREEN);
-	MOV.B	#3, W10
+	CLR	W10
 	CALL	_dSignalLed_unset
 ;d_dcu.c,53 :: 		}
 L_end_dDCU_stopAcquisition:
@@ -141,7 +141,7 @@ L__dDCU_tick25:
 	CLR	W0
 	MOV	W0, d_dcu_d_DCU_isAliveCounter
 ;d_dcu.c,61 :: 		dSignalLed_unset(DSIGNAL_LED_GREEN);
-	MOV.B	#3, W10
+	CLR	W10
 	CALL	_dSignalLed_unset
 ;d_dcu.c,62 :: 		}
 L_dDCU_tick2:
@@ -181,7 +181,7 @@ _dDCU_sentAcquiringSignal:
 ;d_dcu.c,73 :: 		void dDCU_sentAcquiringSignal(){
 ;d_dcu.c,74 :: 		dSignalLed_set(DSIGNAL_LED_GREEN);
 	PUSH	W10
-	MOV.B	#3, W10
+	CLR	W10
 	CALL	_dSignalLed_set
 ;d_dcu.c,75 :: 		d_DCU_isAliveCounter = 0;
 	CLR	W0
@@ -221,7 +221,7 @@ L__dDCU_handleMessage31:
 	MOV.B	W0, [W1]
 ;d_dcu.c,84 :: 		dSignalLed_unset(DSIGNAL_LED_GREEN);
 	PUSH	W10
-	MOV.B	#3, W10
+	CLR	W10
 	CALL	_dSignalLed_unset
 	POP	W10
 ;d_dcu.c,85 :: 		}else if(acquisitionState == COMMAND_DCU_CLOSE){
@@ -237,7 +237,7 @@ L__dDCU_handleMessage32:
 	MOV.B	W0, [W1]
 ;d_dcu.c,87 :: 		dSignalLed_unset(DSIGNAL_LED_GREEN);
 	PUSH	W10
-	MOV.B	#3, W10
+	CLR	W10
 	CALL	_dSignalLed_unset
 	POP	W10
 ;d_dcu.c,88 :: 		}

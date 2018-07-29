@@ -2,7 +2,7 @@
 //                              S I G N A L  L E D                            //
 //                                    D P X                                   //
 /******************************************************************************/
-//                RED         GREEN          BLUE         RED                 //
+//                            GREEN          BLUE         RED                 //
 /******************************************************************************/
 //                             DCU           EFI          DRS                 //
 /******************************************************************************/
@@ -13,16 +13,13 @@ void dSignalLed_init(void) {
     DSIGNAL_0_Direction = OUTPUT;
     DSIGNAL_1_Direction = OUTPUT;
     DSIGNAL_2_Direction = OUTPUT;
-    DSIGNAL_3_Direction = OUTPUT;
-    dSignalLed_set(DSIGNAL_LED_RED_RIGHT);
+    dSignalLed_set(DSIGNAL_LED_RED);
     dSignalLed_set(DSIGNAL_LED_BLUE);
     dSignalLed_set(DSIGNAL_LED_GREEN);
-    dSignalLed_set(DSIGNAL_LED_RED_LEFT);
     delay_ms(100);
-    dSignalLed_unset(DSIGNAL_LED_GREEN);
+    dSignalLed_unset(DSIGNAL_LED_RED);
     dSignalLed_unset(DSIGNAL_LED_BLUE);
-    dSignalLed_unset(DSIGNAL_LED_RED_RIGHT);
-    dSignalLed_unset(DSIGNAL_LED_RED_LEFT);
+    dSignalLed_unset(DSIGNAL_LED_GREEN);
 }
 
 void dSignalLed_switch(unsigned char led) {
@@ -35,9 +32,6 @@ void dSignalLed_switch(unsigned char led) {
             break;
         case DSIGNAL_LED_2:
             DSIGNAL_2_Pin = !DSIGNAL_2_Pin;
-            break;
-        case DSIGNAL_LED_3:
-            DSIGNAL_3_Pin = !DSIGNAL_3_Pin;
             break;
     }
 }
@@ -53,9 +47,6 @@ void dSignalLed_set(unsigned char led) {
         case DSIGNAL_LED_2:
             DSIGNAL_2_Pin = DSIGNAL_LED_ON;
             break;
-        case DSIGNAL_LED_3:
-            DSIGNAL_3_Pin = DSIGNAL_LED_ON;
-            break;
     }
 }
 
@@ -69,9 +60,6 @@ void dSignalLed_unset(unsigned char led) {
             break;
         case DSIGNAL_LED_2:
             DSIGNAL_2_Pin = DSIGNAL_LED_OFF;
-            break;
-        case DSIGNAL_LED_3:
-            DSIGNAL_3_Pin = DSIGNAL_LED_OFF;
             break;
     }
 }

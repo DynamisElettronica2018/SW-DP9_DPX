@@ -1,6 +1,6 @@
-#line 1 "C:/Users/sofia/Desktop/GIT REPO/SW/libs/can.c"
-#line 1 "c:/users/sofia/desktop/git repo/sw/libs/can.h"
-#line 52 "c:/users/sofia/desktop/git repo/sw/libs/can.h"
+#line 1 "C:/Users/sofia/Desktop/GIT REPO/SW-DP9_DPX/libs/can.c"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/libs/can.h"
+#line 52 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/libs/can.h"
 void Can_init(void);
 
 unsigned int Can_read(unsigned long int *id, char* dataBuffer, unsigned int *dataLength, unsigned int *inFlags);
@@ -32,11 +32,11 @@ void Can_clearB1Flag(void);
 void Can_clearInterrupt(void);
 
 void Can_initInterrupt(void);
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/peripherals/d_can.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/peripherals/../../libs/can.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/libs/debug.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/libs/../modules/ui/display/dd_global_defines.h"
-#line 9 "c:/users/sofia/desktop/git repo/sw/libs/debug.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/d_can.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/../../libs/can.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/libs/debug.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/libs/../modules/ui/display/dd_global_defines.h"
+#line 9 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/libs/debug.h"
 extern char dstr[100];
 
 void Debug_UART_Init();
@@ -49,7 +49,7 @@ void resetTimer32(void);
 double getExecTime(void);
 void stopTimer32();
 void startTimer32();
-#line 30 "C:/Users/sofia/Desktop/GIT REPO/SW/libs/can.c"
+#line 30 "C:/Users/sofia/Desktop/GIT REPO/SW-DP9_DPX/libs/can.c"
 unsigned char can_dataOutBuffer[ 8 ];
 unsigned int can_dataOutLength = 0;
 unsigned int can_txPriority =  _CAN_TX_PRIORITY_1 ;
@@ -165,7 +165,7 @@ void Can_clearInterrupt(void) {
 }
 
 void Can_initInterrupt(void) {
-#line 151 "C:/Users/sofia/Desktop/GIT REPO/SW/libs/can.c"
+#line 151 "C:/Users/sofia/Desktop/GIT REPO/SW-DP9_DPX/libs/can.c"
  IEC1BITS.C1IE = 1;
  C1INTEBITS.RXB0IE = 1;
  C1INTEBITS.RXB1IE = 1;

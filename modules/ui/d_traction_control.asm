@@ -115,69 +115,69 @@ L_d_traction_control_printNotification0:
 	MOV	#lo_addr(_d_tractionValue), W0
 	MOV.B	[W0], W0
 	CP.B	W0, #0
-	BRA NZ	L__d_traction_control_printNotification20
-	GOTO	L_d_traction_control_printNotification2
-L__d_traction_control_printNotification20:
-	MOV	#lo_addr(_d_tractionValue), W0
-	MOV.B	[W0], W0
-	CP.B	W0, #1
-	BRA NZ	L__d_traction_control_printNotification21
-	GOTO	L_d_traction_control_printNotification3
-L__d_traction_control_printNotification21:
-	MOV	#lo_addr(_d_tractionValue), W0
-	MOV.B	[W0], W0
-	CP.B	W0, #2
 	BRA NZ	L__d_traction_control_printNotification22
-	GOTO	L_d_traction_control_printNotification4
+	GOTO	L_d_traction_control_printNotification2
 L__d_traction_control_printNotification22:
 	MOV	#lo_addr(_d_tractionValue), W0
 	MOV.B	[W0], W0
-	CP.B	W0, #3
+	CP.B	W0, #1
 	BRA NZ	L__d_traction_control_printNotification23
-	GOTO	L_d_traction_control_printNotification5
+	GOTO	L_d_traction_control_printNotification3
 L__d_traction_control_printNotification23:
 	MOV	#lo_addr(_d_tractionValue), W0
 	MOV.B	[W0], W0
-	CP.B	W0, #4
+	CP.B	W0, #2
 	BRA NZ	L__d_traction_control_printNotification24
-	GOTO	L_d_traction_control_printNotification6
+	GOTO	L_d_traction_control_printNotification4
 L__d_traction_control_printNotification24:
 	MOV	#lo_addr(_d_tractionValue), W0
 	MOV.B	[W0], W0
-	CP.B	W0, #5
+	CP.B	W0, #3
 	BRA NZ	L__d_traction_control_printNotification25
-	GOTO	L_d_traction_control_printNotification7
+	GOTO	L_d_traction_control_printNotification5
 L__d_traction_control_printNotification25:
 	MOV	#lo_addr(_d_tractionValue), W0
 	MOV.B	[W0], W0
-	CP.B	W0, #6
+	CP.B	W0, #4
 	BRA NZ	L__d_traction_control_printNotification26
-	GOTO	L_d_traction_control_printNotification8
+	GOTO	L_d_traction_control_printNotification6
 L__d_traction_control_printNotification26:
 	MOV	#lo_addr(_d_tractionValue), W0
 	MOV.B	[W0], W0
-	CP.B	W0, #7
+	CP.B	W0, #5
 	BRA NZ	L__d_traction_control_printNotification27
-	GOTO	L_d_traction_control_printNotification9
+	GOTO	L_d_traction_control_printNotification7
 L__d_traction_control_printNotification27:
 	MOV	#lo_addr(_d_tractionValue), W0
 	MOV.B	[W0], W0
-	CP.B	W0, #8
+	CP.B	W0, #6
 	BRA NZ	L__d_traction_control_printNotification28
-	GOTO	L_d_traction_control_printNotification10
+	GOTO	L_d_traction_control_printNotification8
 L__d_traction_control_printNotification28:
 	MOV	#lo_addr(_d_tractionValue), W0
 	MOV.B	[W0], W0
-	CP.B	W0, #9
+	CP.B	W0, #7
 	BRA NZ	L__d_traction_control_printNotification29
-	GOTO	L_d_traction_control_printNotification11
+	GOTO	L_d_traction_control_printNotification9
 L__d_traction_control_printNotification29:
 	MOV	#lo_addr(_d_tractionValue), W0
 	MOV.B	[W0], W0
-	CP.B	W0, #10
+	CP.B	W0, #8
 	BRA NZ	L__d_traction_control_printNotification30
-	GOTO	L_d_traction_control_printNotification12
+	GOTO	L_d_traction_control_printNotification10
 L__d_traction_control_printNotification30:
+	MOV	#lo_addr(_d_tractionValue), W0
+	MOV.B	[W0], W0
+	CP.B	W0, #9
+	BRA NZ	L__d_traction_control_printNotification31
+	GOTO	L_d_traction_control_printNotification11
+L__d_traction_control_printNotification31:
+	MOV	#lo_addr(_d_tractionValue), W0
+	MOV.B	[W0], W0
+	CP.B	W0, #10
+	BRA NZ	L__d_traction_control_printNotification32
+	GOTO	L_d_traction_control_printNotification12
+L__d_traction_control_printNotification32:
 	GOTO	L_d_traction_control_printNotification13
 L_d_traction_control_printNotification1:
 ;d_traction_control.c,59 :: 		}
@@ -222,88 +222,124 @@ L_end_d_traction_control_propagateValue:
 	RETURN
 ; end of _d_traction_control_propagateValue
 
-_d_traction_control_move:
+_d_traction_control_increase:
 
-;d_traction_control.c,69 :: 		void d_traction_control_move(signed char movements){
-;d_traction_control.c,71 :: 		value = d_tractionValue - movements;
+;d_traction_control.c,69 :: 		void d_traction_control_increase(void){
+;d_traction_control.c,70 :: 		d_tractionValue ++;
 	PUSH	W10
+	MOV.B	#1, W1
 	MOV	#lo_addr(_d_tractionValue), W0
-	SE	[W0], W1
-	SE	W10, W0
-	SUB	W1, W0, W0
-; value start address is: 2 (W1)
-	MOV.B	W0, W1
-;d_traction_control.c,72 :: 		if(value > TRACTION_MAX_VALUE){
+	ADD.B	W1, [W0], [W0]
+;d_traction_control.c,71 :: 		if(d_tractionValue > TRACTION_MAX_VALUE){
+	MOV	#lo_addr(_d_tractionValue), W0
+	MOV.B	[W0], W0
 	CP.B	W0, #7
-	BRA GT	L__d_traction_control_move34
-	GOTO	L_d_traction_control_move14
-L__d_traction_control_move34:
-;d_traction_control.c,73 :: 		value = TRACTION_MAX_VALUE;
-	MOV.B	#7, W1
-;d_traction_control.c,74 :: 		} else if(value < TRACTION_MIN_VALUE){
-	GOTO	L_d_traction_control_move15
-L_d_traction_control_move14:
-	CP.B	W1, #0
-	BRA LT	L__d_traction_control_move35
-	GOTO	L__d_traction_control_move18
-L__d_traction_control_move35:
-; value end address is: 2 (W1)
-;d_traction_control.c,75 :: 		value = TRACTION_MIN_VALUE;
-; value start address is: 0 (W0)
-	CLR	W0
-; value end address is: 0 (W0)
-	MOV.B	W0, W1
-;d_traction_control.c,76 :: 		}
-	GOTO	L_d_traction_control_move16
-L__d_traction_control_move18:
-;d_traction_control.c,74 :: 		} else if(value < TRACTION_MIN_VALUE){
-;d_traction_control.c,76 :: 		}
-L_d_traction_control_move16:
-; value start address is: 2 (W1)
-; value end address is: 2 (W1)
-L_d_traction_control_move15:
-;d_traction_control.c,77 :: 		d_tractionValue = value;
-; value start address is: 2 (W1)
+	BRA GT	L__d_traction_control_increase36
+	GOTO	L_d_traction_control_increase14
+L__d_traction_control_increase36:
+;d_traction_control.c,72 :: 		d_tractionValue = TRACTION_MAX_VALUE;
+	MOV	#lo_addr(_d_tractionValue), W1
+	MOV.B	#7, W0
+	MOV.B	W0, [W1]
+;d_traction_control.c,73 :: 		} else if(d_tractionValue < TRACTION_MIN_VALUE){
+	GOTO	L_d_traction_control_increase15
+L_d_traction_control_increase14:
 	MOV	#lo_addr(_d_tractionValue), W0
-	MOV.B	W1, [W0]
-;d_traction_control.c,78 :: 		d_traction_control_propagateValue(d_tractionValue);
-	MOV.B	W1, W10
-; value end address is: 2 (W1)
+	MOV.B	[W0], W0
+	CP.B	W0, #0
+	BRA LT	L__d_traction_control_increase37
+	GOTO	L_d_traction_control_increase16
+L__d_traction_control_increase37:
+;d_traction_control.c,74 :: 		d_tractionValue = TRACTION_MIN_VALUE;
+	MOV	#lo_addr(_d_tractionValue), W1
+	CLR	W0
+	MOV.B	W0, [W1]
+;d_traction_control.c,75 :: 		}
+L_d_traction_control_increase16:
+L_d_traction_control_increase15:
+;d_traction_control.c,76 :: 		d_traction_control_propagateValue(d_tractionValue);
+	MOV	#lo_addr(_d_tractionValue), W0
+	MOV.B	[W0], W10
 	CALL	_d_traction_control_propagateValue
-;d_traction_control.c,79 :: 		}
-L_end_d_traction_control_move:
+;d_traction_control.c,77 :: 		}
+L_end_d_traction_control_increase:
 	POP	W10
 	RETURN
-; end of _d_traction_control_move
+; end of _d_traction_control_increase
+
+_d_traction_control_decrease:
+
+;d_traction_control.c,79 :: 		void d_traction_control_decrease(void){
+;d_traction_control.c,80 :: 		d_tractionValue--;
+	PUSH	W10
+	MOV.B	#1, W1
+	MOV	#lo_addr(_d_tractionValue), W0
+	SUBR.B	W1, [W0], [W0]
+;d_traction_control.c,81 :: 		if(d_tractionValue > TRACTION_MAX_VALUE){
+	MOV	#lo_addr(_d_tractionValue), W0
+	MOV.B	[W0], W0
+	CP.B	W0, #7
+	BRA GT	L__d_traction_control_decrease39
+	GOTO	L_d_traction_control_decrease17
+L__d_traction_control_decrease39:
+;d_traction_control.c,82 :: 		d_tractionValue = TRACTION_MAX_VALUE;
+	MOV	#lo_addr(_d_tractionValue), W1
+	MOV.B	#7, W0
+	MOV.B	W0, [W1]
+;d_traction_control.c,83 :: 		} else if(d_tractionValue < TRACTION_MIN_VALUE){
+	GOTO	L_d_traction_control_decrease18
+L_d_traction_control_decrease17:
+	MOV	#lo_addr(_d_tractionValue), W0
+	MOV.B	[W0], W0
+	CP.B	W0, #0
+	BRA LT	L__d_traction_control_decrease40
+	GOTO	L_d_traction_control_decrease19
+L__d_traction_control_decrease40:
+;d_traction_control.c,84 :: 		d_tractionValue = TRACTION_MIN_VALUE;
+	MOV	#lo_addr(_d_tractionValue), W1
+	CLR	W0
+	MOV.B	W0, [W1]
+;d_traction_control.c,85 :: 		}
+L_d_traction_control_decrease19:
+L_d_traction_control_decrease18:
+;d_traction_control.c,86 :: 		d_traction_control_propagateValue(d_tractionValue);
+	MOV	#lo_addr(_d_tractionValue), W0
+	MOV.B	[W0], W10
+	CALL	_d_traction_control_propagateValue
+;d_traction_control.c,87 :: 		}
+L_end_d_traction_control_decrease:
+	POP	W10
+	RETURN
+; end of _d_traction_control_decrease
 
 _d_traction_control_setValueFromCAN:
 
-;d_traction_control.c,81 :: 		void d_traction_control_setValueFromCAN(unsigned int value){
-;d_traction_control.c,82 :: 		if(d_UI_getOperatingMode() != ACC_MODE){
+;d_traction_control.c,89 :: 		void d_traction_control_setValueFromCAN(unsigned int value){
+;d_traction_control.c,90 :: 		if(d_UI_getOperatingMode() != ACC_MODE){
 	PUSH	W10
 	CALL	_d_UI_getOperatingMode
 	POP	W10
 	CP.B	W0, #4
-	BRA NZ	L__d_traction_control_setValueFromCAN37
-	GOTO	L_d_traction_control_setValueFromCAN17
-L__d_traction_control_setValueFromCAN37:
-;d_traction_control.c,83 :: 		d_tractionValue = value;
+	BRA NZ	L__d_traction_control_setValueFromCAN42
+	GOTO	L_d_traction_control_setValueFromCAN20
+L__d_traction_control_setValueFromCAN42:
+;d_traction_control.c,91 :: 		d_tractionValue = value;
 	MOV	#lo_addr(_d_tractionValue), W0
 	MOV.B	W10, [W0]
-;d_traction_control.c,84 :: 		d_traction_control_printNotification();
+;d_traction_control.c,92 :: 		d_traction_control_printNotification();
 	CALL	_d_traction_control_printNotification
-;d_traction_control.c,85 :: 		}
-L_d_traction_control_setValueFromCAN17:
-;d_traction_control.c,86 :: 		return;
-;d_traction_control.c,87 :: 		}
+;d_traction_control.c,93 :: 		}
+L_d_traction_control_setValueFromCAN20:
+;d_traction_control.c,94 :: 		return;
+;d_traction_control.c,95 :: 		}
 L_end_d_traction_control_setValueFromCAN:
 	RETURN
 ; end of _d_traction_control_setValueFromCAN
 
 _d_traction_control_init:
 
-;d_traction_control.c,89 :: 		void d_traction_control_init(void){
-;d_traction_control.c,91 :: 		}
+;d_traction_control.c,97 :: 		void d_traction_control_init(void){
+;d_traction_control.c,99 :: 		}
 L_end_d_traction_control_init:
 	RETURN
 ; end of _d_traction_control_init

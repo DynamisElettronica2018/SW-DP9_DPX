@@ -9,15 +9,13 @@
 #include "../../../libs/i2c_expander.h"
 #include "../ui/display/dd_indicators.h"
 #include "../d_operating_modes.h"
+#include "d_ledStripe.h"
 #include <math.h>
 
 unsigned int dRpm = 0;
 char dRpm_ledStripeOutputEnable = FALSE;
 
 void dRpm_init() {
-    I2CExpander_init(I2C_ADDRESS_RPM_STRIPE, OUTPUT);
-    dRpm = 0;
-    dRpm_enableLedStripeOutput();
 }
 
 float dRpm_getDisplayValue(void) {
@@ -48,9 +46,63 @@ void dRpm_enableLedStripeOutput(void) {
 }
 
 void dRpm_updateLedStripe(void) {
-    unsigned char dLedStripePort = 0;
+    unsigned char dLedStripeState;
     if (dRpm > RPM_STRIPE_OFFSET) {
-        dLedStripePort = 0b11111111 >> (RPM_STRIPE_LED_COUNT - (unsigned int)ceil(((dRpm - RPM_STRIPE_OFFSET) / RPM_STRIPE_STEP)));
+        dLedStripeState = (dRpm - RPM_STRIPE_OFFSET) / RPM_STRIPE_STEP;
+    } else {
+        dLedStripeState = 0;
     }
-    I2CExpander_setPort(I2C_ADDRESS_RPM_STRIPE, dLedStripePort);
+    switch (dLedStripeState) {
+        case 0:
+            dLedStripe_clear();
+            break;
+        case 1:
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_0);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_1);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_2);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_3);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_4);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_5);
+            break;
+        case 2:
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_0);
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_1);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_2);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_3);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_4);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_5);
+            break;
+        case 3:
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_0);
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_1);
+            dLedStripe_setLedColorAtPosition(DLS_RED, DLS_LED_2);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_3);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_4);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_5);
+            break;
+        case 4:
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_0);
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_1);
+            dLedStripe_setLedColorAtPosition(DLS_RED, DLS_LED_2);
+            dLedStripe_setLedColorAtPosition(DLS_RED, DLS_LED_3);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_4);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_5);
+            break;
+        case 5:
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_0);
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_1);
+            dLedStripe_setLedColorAtPosition(DLS_RED, DLS_LED_2);
+            dLedStripe_setLedColorAtPosition(DLS_RED, DLS_LED_3);
+            dLedStripe_setLedColorAtPosition(DLS_BLUE, DLS_LED_4);
+            dLedStripe_setLedColorAtPosition(DLS_BLACK, DLS_LED_5);
+            break;
+        case 6:
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_0);
+            dLedStripe_setLedColorAtPosition(DLS_GREEN, DLS_LED_1);
+            dLedStripe_setLedColorAtPosition(DLS_RED, DLS_LED_2);
+            dLedStripe_setLedColorAtPosition(DLS_RED, DLS_LED_3);
+            dLedStripe_setLedColorAtPosition(DLS_BLUE, DLS_LED_4);
+            dLedStripe_setLedColorAtPosition(DLS_BLUE, DLS_LED_5);
+            break;
+    }
 }

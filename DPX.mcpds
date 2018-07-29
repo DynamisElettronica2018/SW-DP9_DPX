@@ -11,7 +11,7 @@ Value=0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-Value=modules\peripherals\d_dcu.c
+Value=DPX.c
 =======
 Value=modules\peripherals\d_drs.c
 >>>>>>> drs2
@@ -47,8 +47,10 @@ Value=0
 Value=2000
 [EEPROM_DEFINITION]
 Value=
+[EEPROM]
+Count=0
 [FILES]
-Count=37
+Count=38
 File0=DPX.c
 File1=libs\basic.c
 File2=libs\buttons.c
@@ -86,23 +88,25 @@ File33=modules\ui\d_autocross.c
 File34=modules\ui\d_traction_control.c
 File35=modules\peripherals\d_drs.c
 File36=modules\ui\input-output\d_antistall.c
+File37=modules\ui\input-output\d_ledStripe.c
 [BINARIES]
 Count=0
 [IMAGES]
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-Count=8
+Count=11
 File0=DPX.c
-File1=modules\ui\d_acceleration.c
-File2=modules\peripherals\d_efiSense.c
-File3=modules\peripherals\d_dcu.c
-File4=modules\peripherals\d_dcu.h
-File5=modules\ui\input-output\d_hardReset.c
-File6=modules\peripherals\d_can.h
-File7=modules\ui\input-output\d_hardReset.h
-[EEPROM]
-Count=0
+File1=modules\ui\input-output\d_controls.c
+File2=modules\ui\d_ui_controller.c
+File3=modules\ui\display\dd_indicators.c
+File4=modules\ui\input-output\d_rpm.c
+File5=modules\ui\d_traction_control.c
+File6=modules\peripherals\d_dcu.c
+File7=modules\ui\input-output\d_hardReset.c
+File8=modules\ui\input-output\d_ledStripe.c
+File9=modules\peripherals\d_ebb.c
+File10=modules\ui\input-output\d_signalLed.c
 [ACTIVE_COMMENTS_FILES]
 Count=0
 [OTHER_FILES]
@@ -111,7 +115,7 @@ Count=0
 Count=16
 Path0=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for dsPIC\defs\
 Path1=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for dsPIC\uses\
-Path2=C:\Users\sofia\Desktop\GIT REPO\SW\
+Path2=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\
 Path3=C:\Users\utente\Desktop\git Repo\SW\
 Path4=C:\Users\utente\Desktop\git Repo\SW\libs\
 Path5=C:\Users\utente\Desktop\git Repo\SW\modules\peripherals\
@@ -119,12 +123,12 @@ Path6=C:\Users\utente\Desktop\git Repo\SW\modules\ui\display\
 Path7=C:\Users\utente\Desktop\git Repo\SW\modules\ui\input-output\
 Path8=C:\Users\utente\Desktop\git Repo\SW\modules\ui\
 Path9=C:\Users\utente\Desktop\git Repo\SW\modules\ui\display\fonts\
-Path10=C:\Users\sofia\Desktop\GIT REPO\SW\libs\
-Path11=C:\Users\sofia\Desktop\GIT REPO\SW\modules\peripherals\
-Path12=C:\Users\sofia\Desktop\GIT REPO\SW\modules\ui\display\
-Path13=C:\Users\sofia\Desktop\GIT REPO\SW\modules\ui\input-output\
-Path14=C:\Users\sofia\Desktop\GIT REPO\SW\modules\ui\
-Path15=C:\Users\sofia\Desktop\GIT REPO\SW\modules\ui\display\fonts\
+Path10=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\libs\
+Path11=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\modules\peripherals\
+Path12=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\modules\ui\display\
+Path13=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\modules\ui\input-output\
+Path14=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\modules\ui\
+Path15=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\modules\ui\display\fonts\
 [HEADER_PATH]
 Count=12
 Path0=C:\Users\utente\Desktop\git Repo\SW\libs\
@@ -133,14 +137,14 @@ Path2=C:\Users\utente\Desktop\git Repo\SW\modules\ui\display\fonts\
 Path3=C:\Users\utente\Desktop\git Repo\SW\modules\ui\display\
 Path4=C:\Users\utente\Desktop\git Repo\SW\modules\ui\input-output\
 Path5=C:\Users\utente\Desktop\git Repo\SW\modules\ui\
-Path6=C:\Users\sofia\Desktop\GIT REPO\SW\libs\
-Path7=C:\Users\sofia\Desktop\GIT REPO\SW\modules\peripherals\
-Path8=C:\Users\sofia\Desktop\GIT REPO\SW\modules\ui\display\fonts\
-Path9=C:\Users\sofia\Desktop\GIT REPO\SW\modules\ui\display\
-Path10=C:\Users\sofia\Desktop\GIT REPO\SW\modules\ui\input-output\
-Path11=C:\Users\sofia\Desktop\GIT REPO\SW\modules\ui\
+Path6=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\libs\
+Path7=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\modules\peripherals\
+Path8=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\modules\ui\display\fonts\
+Path9=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\modules\ui\display\
+Path10=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\modules\ui\input-output\
+Path11=C:\Users\sofia\Desktop\GIT REPO\SW-DP9_DPX\modules\ui\
 [HEADERS]
-Count=44
+Count=45
 File0=libs\basic.h
 File1=libs\buttons.h
 File2=libs\can.h
@@ -185,6 +189,7 @@ File40=modules\ui\d_autocross.h
 File41=modules\ui\d_traction_control.h
 File42=modules\peripherals\d_drs.h
 File43=modules\ui\input-output\d_antistall.h
+File44=modules\ui\input-output\d_ledStripe.h
 [PLDS]
 Count=0
 [Useses]
@@ -254,5 +259,4 @@ File61=Vectors
 [EXPANDED NODES]
 Node1=Sources
 Node2=Header Files
-Node3=Output Files
-Count=3
+Count=2

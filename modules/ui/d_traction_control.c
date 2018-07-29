@@ -66,15 +66,23 @@ void d_traction_control_propagateValue(signed char value){
       Can_writeInt(SW_TRACTION_CONTROL_GCU_ID, (int) value);
 }
 
-void d_traction_control_move(signed char movements){
-      signed char value;
-      value = d_tractionValue - movements;
-      if(value > TRACTION_MAX_VALUE){
-         value = TRACTION_MAX_VALUE;
-      } else if(value < TRACTION_MIN_VALUE){
-         value = TRACTION_MIN_VALUE;
+void d_traction_control_increase(void){
+      d_tractionValue ++;
+      if(d_tractionValue > TRACTION_MAX_VALUE){
+         d_tractionValue = TRACTION_MAX_VALUE;
+      } else if(d_tractionValue < TRACTION_MIN_VALUE){
+         d_tractionValue = TRACTION_MIN_VALUE;
       }
-      d_tractionValue = value;
+      d_traction_control_propagateValue(d_tractionValue);
+}
+
+void d_traction_control_decrease(void){
+     d_tractionValue--;
+      if(d_tractionValue > TRACTION_MAX_VALUE){
+         d_tractionValue = TRACTION_MAX_VALUE;
+      } else if(d_tractionValue < TRACTION_MIN_VALUE){
+         d_tractionValue = TRACTION_MIN_VALUE;
+      }
       d_traction_control_propagateValue(d_tractionValue);
 }
 

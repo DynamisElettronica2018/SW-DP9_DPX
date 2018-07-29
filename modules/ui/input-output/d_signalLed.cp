@@ -1,7 +1,7 @@
-#line 1 "C:/Users/sofia/Desktop/GIT REPO/SW/modules/ui/input-output/d_signalLed.c"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/d_signalled.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../../libs/basic.h"
-#line 17 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../../libs/basic.h"
+#line 1 "C:/Users/sofia/Desktop/GIT REPO/SW-DP9_DPX/modules/ui/input-output/d_signalLed.c"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/d_signalled.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/../../libs/basic.h"
+#line 17 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/../../libs/basic.h"
 char log2(unsigned char byte);
 
 int round(double number);
@@ -13,9 +13,9 @@ void signedIntToString(int number, char *text);
 unsigned char getNumberDigitCount(unsigned char number);
 
 void emptyString(char* myString);
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../../libs/dspic.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../../libs/basic.h"
-#line 186 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../../libs/dspic.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/../../libs/dspic.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/libs/basic.h"
+#line 186 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/../../libs/dspic.h"
 void setAllPinAsDigital(void);
 
 void setInterruptPriority(unsigned char device, unsigned char priority);
@@ -73,7 +73,7 @@ void setAnalogVoltageReference(unsigned char mode);
 void setAnalogDataOutputFormat(unsigned char adof);
 
 int getMinimumAnalogClockConversion(void);
-#line 36 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/d_signalled.h"
+#line 32 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/d_signalled.h"
 void dSignalLed_init(void);
 
 void dSignalLed_switch(unsigned char led);
@@ -81,36 +81,30 @@ void dSignalLed_switch(unsigned char led);
 void dSignalLed_set(unsigned char led);
 
 void dSignalLed_unset(unsigned char led);
-#line 12 "C:/Users/sofia/Desktop/GIT REPO/SW/modules/ui/input-output/d_signalLed.c"
+#line 12 "C:/Users/sofia/Desktop/GIT REPO/SW-DP9_DPX/modules/ui/input-output/d_signalLed.c"
 void dSignalLed_init(void) {
-  TRISB9_bit  =  0 ;
-  TRISB10_bit  =  0 ;
-  TRISB11_bit  =  0 ;
-  TRISB13_bit  =  0 ;
+  TRISF5_bit  =  0 ;
+  TRISF4_bit  =  0 ;
+  TRISG1_bit  =  0 ;
  dSignalLed_set( 1 );
- dSignalLed_set( 0 );
- dSignalLed_set( 3 );
  dSignalLed_set( 2 );
+ dSignalLed_set( 0 );
  delay_ms(100);
- dSignalLed_unset( 3 );
- dSignalLed_unset( 0 );
  dSignalLed_unset( 1 );
  dSignalLed_unset( 2 );
+ dSignalLed_unset( 0 );
 }
 
 void dSignalLed_switch(unsigned char led) {
  switch (led) {
  case  0 :
-  RB9_bit  = ! RB9_bit ;
+  RF5_bit  = ! RF5_bit ;
  break;
  case  1 :
-  RB10_bit  = ! RB10_bit ;
+  RF4_bit  = ! RF4_bit ;
  break;
  case  2 :
-  RB11_bit  = ! RB11_bit ;
- break;
- case  3 :
-  RB13_bit  = ! RB13_bit ;
+  RG1_bit  = ! RG1_bit ;
  break;
  }
 }
@@ -118,16 +112,13 @@ void dSignalLed_switch(unsigned char led) {
 void dSignalLed_set(unsigned char led) {
  switch (led) {
  case  0 :
-  RB9_bit  =  1 ;
+  RF5_bit  =  1 ;
  break;
  case  1 :
-  RB10_bit  =  1 ;
+  RF4_bit  =  1 ;
  break;
  case  2 :
-  RB11_bit  =  1 ;
- break;
- case  3 :
-  RB13_bit  =  1 ;
+  RG1_bit  =  1 ;
  break;
  }
 }
@@ -135,16 +126,13 @@ void dSignalLed_set(unsigned char led) {
 void dSignalLed_unset(unsigned char led) {
  switch (led) {
  case  0 :
-  RB9_bit  =  0 ;
+  RF5_bit  =  0 ;
  break;
  case  1 :
-  RB10_bit  =  0 ;
+  RF4_bit  =  0 ;
  break;
  case  2 :
-  RB11_bit  =  0 ;
- break;
- case  3 :
-  RB13_bit  =  0 ;
+  RG1_bit  =  0 ;
  break;
  }
 }

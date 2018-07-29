@@ -1,5 +1,5 @@
-#line 1 "C:/Users/sofia/Desktop/GIT REPO/SW/libs/eeprom.c"
-#line 1 "c:/users/sofia/desktop/git repo/sw/libs/eeprom.h"
+#line 1 "C:/Users/sofia/Desktop/GIT REPO/SW-DP9_DPX/libs/eeprom.c"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/libs/eeprom.h"
 
 
 
@@ -17,7 +17,7 @@ unsigned int EEPROM_readInt(unsigned int address);
 void EEPROM_writeArray(unsigned int address, unsigned int *values);
 
 void EEPROM_readArray(unsigned int address, unsigned int *values);
-#line 8 "C:/Users/sofia/Desktop/GIT REPO/SW/libs/eeprom.c"
+#line 8 "C:/Users/sofia/Desktop/GIT REPO/SW-DP9_DPX/libs/eeprom.c"
 void EEPROM_writeInt(unsigned int address, unsigned int value) {
  unsigned int currentValue;
 

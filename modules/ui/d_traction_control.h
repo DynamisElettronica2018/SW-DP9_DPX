@@ -8,7 +8,9 @@
 
 #define TRACTION_CONTROL_NOTIFICATION_TIME 1000
 
-void d_traction_control_move(signed char movements);
+void d_traction_control_decrease(void);
+
+void d_traction_control_increase(void);
 
 void d_traction_control_init(void);
 

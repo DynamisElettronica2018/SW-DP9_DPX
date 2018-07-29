@@ -35,7 +35,6 @@
 #include <stdlib.h>
 
 int timer2_counter0 = 0, timer2_counter1 = 0, timer2_counter2 = 0, timer2_counter3 = 0, timer2_counter4 = 0, timer2_counter5 = 0, timer2_counter6 = 0;
-int timer2_EncoderTimer = 0;
 
 void main(){
 
@@ -59,7 +58,6 @@ void main(){
     }
 }
 
-
 //on TIMER_2_PERIOD interval (1000Hz)
 onTimer2Interrupt{
     clearTimer2();
@@ -71,7 +69,6 @@ onTimer2Interrupt{
     timer2_counter3 += 1;
     timer2_counter4 += 1;
     timer2_counter5 += 1;
-    timer2_EncoderTimer +=1;
 
     // TIMER_2_PERIOD*5 = 5ms (200Hz)
     if (timer2_counter0 >= 5) {
@@ -99,17 +96,7 @@ onTimer2Interrupt{
        //dEbb_tick();
         timer2_counter3 = 0;
     }
-    
-    if(timer2_counter4 >= 100){
-        if(d_drs_isOpen()){
-          dSignalLed_set(DSIGNAL_LED_RED_RIGHT);
-        } else
-          dSignalLed_unset(DSIGNAL_LED_RED_RIGHT);
-    }
-    
-    if(timer2_EncoderTimer == 100){
-        d_controls_EncoderRead();
-    }
+
     // TIMER_2_PERIOD*1000 = 1s (1Hz)
     if (timer2_counter5 >= 1000) {
         d_sensors_sendSWTemp();
@@ -129,18 +116,10 @@ onCanInterrupt{
     unsigned long int id;
     char dataBuffer[8];
     unsigned int dataLen = 0, flags = 0;
-    //INTERRUPT_PROTECT(IEC1BITS.C1IE = 0);
-    //IEC1BITS.C1IE = 0;
+    
     Can_clearInterrupt();         //la posizione del clear interrup deve essere per forza questa.
     Can_read(&id, dataBuffer, &dataLen, &flags);
-
-    //Buzzer_bip();
-
-    //Can_clearB0Flag();
-    //Can_clearB1Flag();
-
-    //lastId=id;
-
+    
     if (dataLen >= 2) {
         firstInt = (unsigned int) ((dataBuffer[0] << 8) | (dataBuffer[1] & 0xFF));
     }
@@ -181,8 +160,6 @@ onCanInterrupt{
            dEfiSense_heartbeat();
            break;
        case EFI_TRACTION_CONTROL_ID:
-            if(dEfiSense_calculateSpeed(firstInt)>=EFI_SENSE_MIN_SPEED)
-                dControls_disableCentralSelector();
             dd_Indicator_setFloatValueP(&ind_efi_slip.base, dEfiSense_calculateSlip(thirdInt));
             break;
        case EFI_FUEL_FAN_H2O_LAUNCH_ID:
@@ -226,10 +203,6 @@ onCanInterrupt{
            break;
        case DCU_DEBUG_ID:
            dd_Indicator_setIntCoupleValueP(&ind_dcu_board.base,(int)firstInt, (int)secondInt);
-           /*if(thirdInt == (unsigned int)COMMAND_DCU_IS_ACQUIRING){
-                dDCU_isAcquiringSet();
-                dDCU_sentAcquiringSignal();
-           }*/
            dDCU_handleMessage(thirdInt);
            break;
        case GCU_FEEDBACK_ID:
@@ -258,6 +231,4 @@ onCanInterrupt{
        default:
            break;
     }
-   //INTERRUPT_PROTECT(IEC1BITS.C1IE = 1);
-   // IEC1BITS.C1IE = 1;
 }

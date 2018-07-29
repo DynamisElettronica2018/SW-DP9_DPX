@@ -3,38 +3,35 @@
 //                                    D P X                                   //
 /******************************************************************************/
 
-
 #ifndef DPX_CONTROLS_H
 #define DPX_CONTROLS_H
 
-extern int timer2_EncoderTimer;
+#define button_onNeutral    button_onL2Down
 
-void dControls_init(void);
+#define button_onMenuUp  button_onR1Down
 
-void d_controls_EncoderRead(void);
+#define button_onMenuDown button_onR2Down
 
-void dControls_disableCentralSelector();
+#define button_onMenuOk   button_onL1Down
 
-void d_controls_onDRS(void);
+#define button_onMenuRight  button_onR3Down
 
-void d_controls_onAux2(void);
+#define button_onMenuLeft   button_onL3Down
 
-void d_controls_onStartAcquisition(void);
+#define button_onGearDown   button_onBLDown
 
-void d_controls_onNeutral(void);
+#define button_onGearUp button_onBRDown
 
-void d_controls_onReset(void);
+#define button_onStart  button_onCDown
 
-void d_controls_onGearDown(void);
-
-void d_controls_onGearUp(void);
-
-void d_controls_onStart(void);
-
-void d_controls_onLeftEncoder(signed char movements);
-
-void d_controls_onRightEncoder(signed char movements);
-
-void d_controls_onSelectorSwitched(signed char position);
+#define BUTTON_NEUTRAL   BUTTON_L2
+#define BUTTON_MENU_UP    BUTTON_R1
+#define BUTTON_MENU_DOWN    BUTTON_R2
+#define BUTTON_MENU_OK  BUTTON_L1
+#define BUTTON_MENU_RIGHT   BUTTON_R3
+#define BUTTON_MENU_LEFT    BUTTON_L3
+#define BUTTON_GEAR_DOWN    BUTTON_BL
+#define BUTTON_GEAR_UP  BUTTON_BR
+#define BUTTON_START    BUTTON_C
 
 #endif //DPX_CONTROLS_H

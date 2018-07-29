@@ -1,7 +1,7 @@
-#line 1 "C:/Users/sofia/Desktop/GIT REPO/SW/modules/ui/input-output/d_paddle.c"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/d_paddle.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../../libs/basic.h"
-#line 17 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../../libs/basic.h"
+#line 1 "C:/Users/sofia/Desktop/GIT REPO/SW-DP9_DPX/modules/ui/input-output/d_paddle.c"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/d_paddle.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../../../libs/basic.h"
+#line 17 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../../../libs/basic.h"
 char log2(unsigned char byte);
 
 int round(double number);
@@ -13,9 +13,9 @@ void signedIntToString(int number, char *text);
 unsigned char getNumberDigitCount(unsigned char number);
 
 void emptyString(char* myString);
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../../libs/dspic.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../../libs/basic.h"
-#line 186 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../../libs/dspic.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../../../libs/dspic.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../../../libs/basic.h"
+#line 186 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../../../libs/dspic.h"
 void setAllPinAsDigital(void);
 
 void setInterruptPriority(unsigned char device, unsigned char priority);
@@ -73,9 +73,9 @@ void setAnalogVoltageReference(unsigned char mode);
 void setAnalogDataOutputFormat(unsigned char adof);
 
 int getMinimumAnalogClockConversion(void);
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../display/dd_dashboard.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../display/dd_indicators.h"
-#line 20 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../display/dd_indicators.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../display/dd_dashboard.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../display/dd_indicators.h"
+#line 20 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../display/dd_indicators.h"
 typedef enum {
 
  EBB, TH2O, OIL_PRESS, TPS, VBAT, RPM, ADC1, TRACTION_CONTROL,
@@ -101,7 +101,7 @@ typedef struct {
  int first;
  int second;
 } IntCouple;
-#line 70 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../display/dd_indicators.h"
+#line 70 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../display/dd_indicators.h"
 typedef struct Indicator {
  Indicator_ID id;
  char* name;
@@ -196,19 +196,19 @@ void dd_Indicator_switchBoolValueP(Indicator* ind);
 void dd_Indicator_switchBoolValue(Indicator_ID id);
 
 void dd_Indicator_parseValueLabel(unsigned char indicatorIndex);
-#line 24 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../display/dd_dashboard.h"
+#line 24 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../display/dd_dashboard.h"
 typedef enum {TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT, BOTTOM_LEFT} DashboardPosition;
-#line 30 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../display/dd_dashboard.h"
+#line 30 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../display/dd_dashboard.h"
 extern void dd_Dashboard_init();
 extern void dd_Dashboard_print(void);
-#line 40 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../display/dd_dashboard.h"
+#line 40 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../display/dd_dashboard.h"
 unsigned char dd_Dashboard_getIndicatorIndexAtPosition(DashboardPosition position);
 
 
 void dd_Dashboard_printIndicators(void);
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../peripherals/d_can.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../peripherals/../../libs/can.h"
-#line 52 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/../../peripherals/../../libs/can.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../../peripherals/d_can.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../../peripherals/../../libs/can.h"
+#line 52 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/../../peripherals/../../libs/can.h"
 void Can_init(void);
 
 unsigned int Can_read(unsigned long int *id, char* dataBuffer, unsigned int *dataLength, unsigned int *inFlags);
@@ -240,17 +240,17 @@ void Can_clearB1Flag(void);
 void Can_clearInterrupt(void);
 
 void Can_initInterrupt(void);
-#line 16 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/d_paddle.h"
+#line 16 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/d_paddle.h"
 void dPaddle_init(void);
 
 unsigned char dPaddle_getValue(void);
 
 void dPaddle_readSample(void);
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/peripherals/d_clutch.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/peripherals/../ui/input-output/d_paddle.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/peripherals/d_can.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/peripherals/../ui/display/dd_dashboard.h"
-#line 14 "c:/users/sofia/desktop/git repo/sw/modules/peripherals/d_clutch.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/d_clutch.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/../ui/input-output/d_paddle.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/d_can.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/../ui/display/dd_dashboard.h"
+#line 14 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/peripherals/d_clutch.h"
 void dClutch_set(unsigned char value);
 
 void dClutch_injectActualValue(unsigned char value);
@@ -258,48 +258,10 @@ void dClutch_injectActualValue(unsigned char value);
 unsigned char dClutch_get(void);
 
 void dClutch_send(void);
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/d_operating_modes.h"
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/input-output/d_controls.h"
-
-
-
-
-
-
-
-
-
-extern int timer2_EncoderTimer;
-
-void dControls_init(void);
-
-void d_controls_EncoderRead(void);
-
-void dControls_disableCentralSelector();
-
-void d_controls_onDRS(void);
-
-void d_controls_onAux2(void);
-
-void d_controls_onStartAcquisition(void);
-
-void d_controls_onNeutral(void);
-
-void d_controls_onReset(void);
-
-void d_controls_onGearDown(void);
-
-void d_controls_onGearUp(void);
-
-void d_controls_onStart(void);
-
-void d_controls_onLeftEncoder(signed char movements);
-
-void d_controls_onRightEncoder(signed char movements);
-
-void d_controls_onSelectorSwitched(signed char position);
-#line 1 "c:/users/sofia/desktop/git repo/sw/modules/ui/display/dd_indicators.h"
-#line 45 "c:/users/sofia/desktop/git repo/sw/modules/ui/d_operating_modes.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/d_operating_modes.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/input-output/d_controls.h"
+#line 1 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/display/dd_indicators.h"
+#line 45 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/d_operating_modes.h"
 typedef enum {
  BOARD_DEBUG_MODE,
  SETTINGS_MODE,
@@ -359,25 +321,32 @@ extern IntegerIndicator ind_H2O_fans;
 extern IntegerIndicator ind_clutch;
 extern IntegerIndicator ind_drs_curr;
 extern IntegerIndicator ind_gear_motor;
-#line 110 "c:/users/sofia/desktop/git repo/sw/modules/ui/d_operating_modes.h"
+#line 110 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/d_operating_modes.h"
 extern void (*d_OperatingMode_init[ 6 ])(void);
-#line 113 "c:/users/sofia/desktop/git repo/sw/modules/ui/d_operating_modes.h"
+#line 113 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/d_operating_modes.h"
 extern void (*d_OperatingMode_close[ 6 ])(void);
-#line 124 "c:/users/sofia/desktop/git repo/sw/modules/ui/d_operating_modes.h"
-void d_UI_setOperatingMode(OperatingMode mode);
-void d_UI_AutocrossModeInit(void);
-void d_UI_AccModeInit(void);
-#line 134 "c:/users/sofia/desktop/git repo/sw/modules/ui/d_operating_modes.h"
+
+
+void d_UI_BoardDebugModeInit();
+void d_UI_SettingsModeInit();
+void d_UI_DebugModeInit();
+void d_UI_CruiseModeInit();
+void d_UI_AccModeInit();
+void d_UI_AutocrossModeInit();
+
 void d_UI_onSettingsChange(signed char movements);
-#line 165 "c:/users/sofia/desktop/git repo/sw/modules/ui/d_operating_modes.h"
-void d_UI_SettingsModeClose(void);
-void d_UI_AutocrossModeClose(void);
-void d_UI_AccModeClose(void);
-#line 17 "C:/Users/sofia/Desktop/GIT REPO/SW/modules/ui/input-output/d_paddle.c"
+#line 154 "c:/users/sofia/desktop/git repo/sw-dp9_dpx/modules/ui/d_operating_modes.h"
+void d_UI_CruiseModeClose();
+void d_UI_AccModeClose();
+void d_UI_DebugModeClose();
+void d_UI_SettingsModeClose();
+void d_UI_BoardDebugModeClose();
+void d_UI_AutocrossModeClose();
+#line 17 "C:/Users/sofia/Desktop/GIT REPO/SW-DP9_DPX/modules/ui/input-output/d_paddle.c"
 unsigned int dPaddle_value = 0;
 
 void dPaddle_init(void) {
-#line 23 "C:/Users/sofia/Desktop/GIT REPO/SW/modules/ui/input-output/d_paddle.c"
+#line 23 "C:/Users/sofia/Desktop/GIT REPO/SW-DP9_DPX/modules/ui/input-output/d_paddle.c"
 }
 
 

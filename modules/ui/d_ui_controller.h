@@ -18,6 +18,8 @@ OperatingMode d_UI_getOperatingMode(void);
 
 int d_UI_OperatingModeChanged(void);
 
+void d_UI_setOperatingMode(OperatingMode mode);
+
 OperatingMode d_selectorPositionToMode(signed char position);
 
 OperatingMode d_UI_getOperatingMode(void);

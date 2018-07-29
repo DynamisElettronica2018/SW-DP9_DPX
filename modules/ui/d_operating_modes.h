@@ -111,26 +111,15 @@ extern void (*d_OperatingMode_init[OPERATING_MODES_COUNT])(void);
 /**        \brief Groups operating mode methods called on exiting the specific mode.
 */
 extern void (*d_OperatingMode_close[OPERATING_MODES_COUNT])(void);
-//!@}
 
-/////////////////////////////////////////
-///SETTINGS MODE
-/////////////////////////////////////////
 
-/** \brief Performs exit logic from settings interface.
-*        
-*        Executes and saves all settings' changes.
-*/
-void d_UI_setOperatingMode(OperatingMode mode);
-void d_UI_AutocrossModeInit(void);
-void d_UI_AccModeInit(void);
+void d_UI_BoardDebugModeInit();
+void d_UI_SettingsModeInit();
+void d_UI_DebugModeInit();
+void d_UI_CruiseModeInit();
+void d_UI_AccModeInit();
+void d_UI_AutocrossModeInit();
 
-/**        \brief Invoked when value of a setting is changed.
-*        
-*        Settings' changes are invoked by left encoder movements on
-*        the currently selected line displayed on its menu interface.
-*        \param direction Direction in which movement is applied. 
-*/
 void d_UI_onSettingsChange(signed char movements);
 
 /**        \file d_operating_modes.h
@@ -162,8 +151,11 @@ void d_UI_onSettingsChange(signed char movements);
 *        \sa d_ui_controller.h
 */
 
-void d_UI_SettingsModeClose(void);
-void d_UI_AutocrossModeClose(void);
-void d_UI_AccModeClose(void);
+void d_UI_CruiseModeClose();
+void d_UI_AccModeClose();
+void d_UI_DebugModeClose();
+void d_UI_SettingsModeClose();
+void d_UI_BoardDebugModeClose();
+void d_UI_AutocrossModeClose();
 
 #endif /* D_UI_OPERATING_MODES */
